@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Clientes y Pedidos</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>Gestión de Clientes y Pedidos</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Soluciones</a></li>
+        <li><a href="#">Comunidad</a></li>
+        <li><a href="#">Recursos</a></li>
+        <li><a href="#">Precios</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <div class="botones-header">
+        <button>Iniciar sesión</button>
+        <button>Registrarse</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="formularios">
+      <div class="card">
+        <h2>Clientes</h2>
+        <form id="form-cliente">
+          <label>Nombre:</label>
+          <input type="text" id="nombre-cliente" required>
+          <label>CI:</label>
+          <input type="text" id="ci-cliente" required>
+          <div class="botones-form">
+            <button type="submit">Agregar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Pedidos</h2>
+        <form id="form-pedido">
+          <label>Producto:</label>
+          <input type="text" id="producto-pedido" required>
+          <label>Cantidad:</label>
+          <input type="number" id="cantidad-pedido" required>
+          <label>Cliente:</label>
+          <select id="select-cliente" required></select>
+          <div class="botones-form">
+            <button type="submit">Agregar Pedido</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="reseñas">
+      <h2>Últimas Reseñas</h2>
+      <div class="contenedor-reseñas">
+        <div class="tarjeta-reseña">
+          <div class="perfil"></div>
+          <h3>Excelente servicio</h3>
+          <p>María Pérez - 25/10/2025 ⭐⭐⭐⭐⭐</p>
+        </div>
+        <div class="tarjeta-reseña">
+          <div class="perfil"></div>
+          <h3>Muy buena atención</h3>
+          <p>Juan López - 22/10/2025 ⭐⭐⭐⭐</p>
+        </div>
+        <div class="tarjeta-reseña">
+          <div class="perfil"></div>
+          <h3>Rápido y confiable</h3>
+          <p>Carlos Rojas - 20/10/2025 ⭐⭐⭐⭐⭐</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tabla-pedidos">
+      <h2>Tabla de Pedidos</h2>
+      <div class="tabla-contenedor">
+        <table id="tabla-pedidos">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Cliente</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="contenido">
+      <h2>Encabezado</h2>
+      <p>Texto de ejemplo para la sección de contenido principal del sitio web.</p>
+      <div class="tarjetas-contenido">
+        <div class="tarjeta">
+          <img src="" alt="Imagen 1">
+          <h3>Título 1</h3>
+          <p>Descripción breve del contenido mostrado.</p>
+          <button>Botón</button>
+        </div>
+        <div class="tarjeta">
+          <img src="" alt="Imagen 2">
+          <h3>Título 2</h3>
+          <p>Texto descriptivo del segundo elemento de contenido.</p>
+          <button>Botón</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h3>Redes Sociales</h3>
+      <ul>
+        <li>X</li>
+        <li>YouTube</li>
+        <li>Instagram</li>
+        <li>LinkedIn</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Casos de uso</h3>
+      <ul>
+        <li>Diseño UI</li>
+        <li>Diseño UX</li>
+        <li>Diagramación</li>
+        <li>Colaboración</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Explorar</h3>
+      <ul>
+        <li>Diseño</li>
+        <li>Sistemas</li>
+        <li>Colaboración</li>
+        <li>Procesos</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Recursos</h3>
+      <ul>
+        <li>Blog</li>
+        <li>Colores</li>
+        <li>Soporte</li>
+        <li>Biblioteca</li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
