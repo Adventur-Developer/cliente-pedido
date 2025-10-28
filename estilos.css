@@ -167,6 +167,11 @@ main {
   margin: 0 auto;
 }
 
+.tabla-clientes h2 {
+  color: #4a90e2;
+  text-align: center;
+}
+
 table {
   width: 100%;
   border: 1px;  

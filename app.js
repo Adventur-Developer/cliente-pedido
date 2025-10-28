@@ -19,14 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
     obtenerPedidos();
   };
 
-  request.onerror = (e) => {
-    console.error("Error DB:", e.target.error);
-  };
+  request.onerror = (e) => console.error("Error DB:", e.target.error);
 
   document.getElementById("form-cliente").addEventListener("submit", agregarCliente);
   document.getElementById("form-pedido").addEventListener("submit", agregarPedido);
 });
 
+// === CRUD CLIENTES ===
 function agregarCliente(e) {
   e.preventDefault();
   const nombre = document.getElementById("nombre-cliente").value;
@@ -44,7 +43,10 @@ function agregarCliente(e) {
 
 function obtenerClientes() {
   const select = document.getElementById("select-cliente");
+  const tbody = document.querySelector("#tabla-clientes tbody");
   select.innerHTML = "";
+  tbody.innerHTML = "";
+
   const trans = db.transaction(["clientes"], "readonly");
   const store = trans.objectStore("clientes");
   const request = store.openCursor();
@@ -52,15 +54,57 @@ function obtenerClientes() {
   request.onsuccess = (e) => {
     const cursor = e.target.result;
     if (cursor) {
+      const { id, nombre, ci } = cursor.value;
+
+      // Para el select del formulario pedido
       const option = document.createElement("option");
-      option.value = cursor.value.nombre;
-      option.textContent = cursor.value.nombre;
+      option.value = nombre;
+      option.textContent = nombre;
       select.appendChild(option);
+
+      // Para la tabla de clientes
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${id}</td>
+        <td>${nombre}</td>
+        <td>${ci}</td>
+        <td>
+          <button onclick="editarCliente(${id})">Editar</button>
+          <button onclick="eliminarCliente(${id})">Borrar</button>
+        </td>`;
+      tbody.appendChild(tr);
+
       cursor.continue();
     }
   };
 }
 
+function eliminarCliente(id) {
+  const trans = db.transaction(["clientes"], "readwrite");
+  const store = trans.objectStore("clientes");
+  store.delete(id);
+  trans.oncomplete = obtenerClientes;
+}
+
+function editarCliente(id) {
+  const nuevoNombre = prompt("Nuevo nombre del cliente:");
+  const nuevoCI = prompt("Nuevo CI:");
+
+  const trans = db.transaction(["clientes"], "readwrite");
+  const store = trans.objectStore("clientes");
+  const request = store.get(id);
+
+  request.onsuccess = () => {
+    const data = request.result;
+    data.nombre = nuevoNombre;
+    data.ci = nuevoCI;
+
+    const updateRequest = store.put(data);
+    updateRequest.onsuccess = obtenerClientes;
+  };
+}
+
+// === CRUD PEDIDOS ===
 function agregarPedido(e) {
   e.preventDefault();
   const producto = document.getElementById("producto-pedido").value;
